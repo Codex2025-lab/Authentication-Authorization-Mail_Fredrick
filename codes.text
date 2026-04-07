@@ -1,0 +1,19 @@
+sudo service postgresql start
+sudo su postgres
+PASSWORD: 'codex', postgres;
+
+sudo service postgresql restart
+psql postgres://fred:codex@localhost/authmail
+
+go run ./cmd/api
+curl -X POST localhost:4000/v1/users \
+  -H "Content-Type: application/json" \
+  -d '{"username":"john","email":"john@test.com","password":"password123"}'
+
+
+  curl -X POST localhost:4000/v1/tokens/authentication \
+-d '{"email":"john@test.com","password":"password123"}'
+
+go run ./cmd/api \
+-smtp-username=YOUR_MAILTRAP_USERNAME \
+-smtp-password=YOUR_MAILTRAP_PASSWORD
